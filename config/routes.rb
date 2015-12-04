@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+  root to: 'finance#index'
   devise_for :users
-  resources :users
+
+  devise_scope :user do
+    get :sign_out, to: 'devise/sessions#destroy'
+  end
 end

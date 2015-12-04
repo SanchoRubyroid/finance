@@ -1,0 +1,11 @@
+.row
+  ul.tabs
+    li.tab.col.s6
+      a.active[href="#test1"] Bank Account
+    li.tab.col.s6
+      a[href="#test2"] PayPal
+
+#test1.col.s12
+  = render 'transactions'
+#test2.col.s12
+  = render 'transactions'

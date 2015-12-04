@@ -9,8 +9,9 @@ html
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
   body
-    header
-      == render 'layouts/navigation'
-    main[role="main"]
-      == render 'layouts/messages'
+    .container
+      /== render 'layouts/navigation'
       == yield
+
+  = hidden_field_tag(:flash_notice, notice)
+  = hidden_field_tag(:flash_alert, alert)

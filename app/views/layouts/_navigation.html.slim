@@ -1,4 +1,5 @@
-ul.nav
-  li
-    = link_to 'Home', root_path
-  == render 'layouts/navigation_links'
+nav
+  .nav-wrapper
+    = link_to 'Finance Tracking', root_path, class:'brand-logo'
+    ul#nav-mobile.right.hide-on-med-and-down
+      = render 'layouts/navigation_links'
