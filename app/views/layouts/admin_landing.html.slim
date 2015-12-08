@@ -2,9 +2,10 @@ doctype html
 html
   head
     = render 'layouts/head_include'
+
   body
     .container
-      /== render 'layouts/navigation'
+      == render 'layouts/admin_navigation'
       == yield
 
   = render 'layouts/flash'
