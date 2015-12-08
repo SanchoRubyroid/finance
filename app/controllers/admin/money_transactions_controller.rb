@@ -7,9 +7,12 @@ class Admin::MoneyTransactionsController < Admin::BaseController
     transactions_file = params[:transactions_file]
     if transactions_file.is_a?(ActionDispatch::Http::UploadedFile)
       if transactions_file.content_type == 'text/csv'
-        flash[:notice] = 'YAAY'
-        manager = TransactionsImport::Manager.new(transactions_file.tempfile)
+        manager = TransactionsImport::Base.build_import_by_type(params[:transactions_type], transactions_file.tempfile)
         manager.import!
+
+        flash[:notice] = "Successful: #{manager.successful_transactions.size + manager.new_transactions.size}.
+                          Added: #{manager.new_transactions.size}.
+                          Rejected: #{manager.rejected_transactions.size}."
       else
         flash[:notice] = 'Uploaded file must be a CSV file.'
       end

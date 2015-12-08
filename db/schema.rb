@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203184144) do
+ActiveRecord::Schema.define(version: 20151208182318) do
+
+  create_table "money_transactions", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.date     "transaction_date"
+    t.string   "system_type",       limit: 255
+    t.decimal  "amount_spent",                  precision: 8, scale: 2
+    t.decimal  "amount_spent_olya",             precision: 8, scale: 2
+    t.string   "currency",          limit: 3
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+  end
+
+  add_index "money_transactions", ["name"], name: "index_money_transactions_on_name", using: :btree
+  add_index "money_transactions", ["transaction_date"], name: "index_money_transactions_on_transaction_date", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

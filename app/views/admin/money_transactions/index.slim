@@ -6,5 +6,16 @@
     .col.s12
       h5 Import transactions
       = form_tag({action: :upload}, multipart: true) do
-        = file_field_tag 'transactions_file'
-        = submit_tag 'Upload file'
+        .row
+          .col.s6.file-field.input-field
+            .btn
+              span File
+              = file_field_tag 'transactions_file'
+            .file-path-wrapper
+              input.file-path.validate[type='text']
+          .col.s6.input-field
+            = select_tag(:transactions_type, options_for_select(MoneyTransaction::SYSTEM_TYPES.map{|type| [type.humanize, type]}))
+            label Transaction Type
+        .row
+          .col.s12.input-field
+            = submit_tag 'Upload file'

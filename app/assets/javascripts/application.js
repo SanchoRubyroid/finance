@@ -17,6 +17,8 @@
 //= require_tree .
 
 $(document).ready(function () {
+    $('select').material_select();
+
     $.each(['notice', 'alert'], function (index, the_flash) {
         contents = $('#flash_' + the_flash).val()
         if (contents.length > 0) Materialize.toast(contents, 3000)
