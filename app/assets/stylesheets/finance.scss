@@ -1,14 +1,19 @@
-$footer-gap: 60px;
+$footer-gap: 54px;
 
 .transactions-tab {
   margin-bottom: $footer-gap - 1;
+
+  & input {
+    height: auto!important;
+    margin: 0!important;
+  }
 }
 
 .transactions-tab tr.line {
   cursor: pointer;
 
   &.selected {
-    background-color: #ffb74d !important;
+    background-color: #fff9c4 !important;
   }
 
   &.db-selected.selected {
@@ -16,7 +21,7 @@ $footer-gap: 60px;
   }
 
   &:hover {
-    opacity: 0.5;
+    border-bottom: 1px solid mediumpurple;
   }
 }
 
@@ -26,6 +31,6 @@ $footer-gap: 60px;
   bottom:0px;
   height:$footer-gap;
   width:100%;
-  background:#999;
-  opacity: 0.8;
+  background:#eee;
+  //opacity: 0.8;
 }

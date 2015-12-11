@@ -4,7 +4,7 @@ table.bordered.striped.centered
       th[data-field="date"] Date
       th[data-field="name"] Name
       th[data-field="type"] Type
-      th[data-field="amount_spent"] Amount Spent
+      th[data-field="amount_spent"] Spent
       th[data-field="amount_spent_olya"] Olya
       th[data-field="currency"] Currency
   tbody
@@ -13,6 +13,8 @@ table.bordered.striped.centered
         = content_tag(:td, money_transaction.transaction_date.strftime('%m/%d/%Y'))
         = content_tag(:td, money_transaction.name, style: 'text-align:left')
         = content_tag(:td, money_transaction.system_type.humanize)
-        = content_tag(:td, money_transaction.amount_spent)
-        = content_tag(:td, money_transaction.amount_spent_olya)
+        = content_tag(:td, money_transaction.amount_spent, class: 'transaction-spent')
+        = content_tag(:td) do
+          = content_tag(:div, class: 'spent-input-container', style: "display: #{money_transaction.amount_spent_olya.present? ? 'block' : 'none'}") do
+            = text_field_tag("money_transactions[#{money_transaction.id}]", money_transaction.amount_spent_olya, size:4, onclick:'event.stopPropagation()')
         = content_tag(:td, money_transaction.currency)

@@ -1,4 +1,5 @@
 class MoneyTransaction < ActiveRecord::Base
+  has_paper_trail
 
   BankAccount = 'bank_account'.freeze
   Paypal = 'paypal'.freeze
@@ -17,6 +18,13 @@ class MoneyTransaction < ActiveRecord::Base
   scope :for_month, -> (date = nil) {
     date ||= Date.today
     where(transaction_date: date.beginning_of_month..date.end_of_month)
+  }
+
+  scope :total, -> (date_or_range = nil) {
+    relation = self
+    relation = relation.where(transaction_date: date_or_range.beginning_of_month..date_or_range.beginning_of_month) if date_or_range.is_a?(Date)
+    relation = relation.where(transaction_date: date_or_range) if date_or_range.is_a?(Range)
+    relation.sum(:amount_spent_olya)
   }
 
   def flip_amount_spent

@@ -4,8 +4,12 @@
       = content_tag(:li, class: "tab col s#{12/@transactions.size}") do
         = link_to(transaction_hash[:month_year_caption], "#transactions_tab#{index}", class: ('active' if @transactions.size-1 == index) )
 
-- @transactions.each_with_index do |transaction_hash, index|
-  = content_tag(:div, id: "transactions_tab#{index}", class: "transactions-tab col s#{12/@transactions.size}") do
-    = render partial: 'transactions', locals: {transactions: transaction_hash[:transactions]}
+= form_tag(update_finances_path, id: 'transactions-form') do
+  - @transactions.each_with_index do |transaction_hash, index|
+    = content_tag(:div, id: "transactions_tab#{index}", class: "transactions-tab col s#{12/@transactions.size}") do
+      - if transaction_hash[:transactions].blank?
+        h5.center No transactions found
+      - else
+        = render partial: 'transactions', locals: {transactions: transaction_hash[:transactions]}
 
-= render 'totals'
+  = render 'totals'

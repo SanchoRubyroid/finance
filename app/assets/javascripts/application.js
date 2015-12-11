@@ -24,9 +24,36 @@ $(document).ready(function () {
         if (contents.length > 0) Materialize.toast(contents, 3000)
     })
 
-    $('.transactions-tab tr').click(handleTransactionLine)
+    $('.transactions-tab tr').click(transactionLineHandler)
+    $('#transactions-form').submit(transactionsBeforeSubmitHandler)
+    $('.transactions-tab input').keyup(updateTotals)
 })
 
-var handleTransactionLine = function(){
+var transactionLineHandler = function(){
+    var selected = $(this).hasClass('selected')
+
+    var input_val = (selected ? '' : $(this).find('.transaction-spent').text());
+
     $(this).toggleClass('selected')
+    $(this).find('.spent-input-container').toggle()
+    $(this).find('input').addClass('updated').val(input_val).focus()
+
+    updateTotals()
+}
+
+var transactionsBeforeSubmitHandler = function() {
+    $('.transactions-tab input').not('.updated').not(':visible').prop('disabled', true);
+
+    return true;
+}
+
+var updateTotals = function(amount, selected) {
+    var total = 0.0
+
+    $('.transactions-tab input:visible').each(function(){
+        value = parseFloat($(this).val())
+        if(!isNaN(value)) total += value
+    })
+
+    $('#grand-total-selected span').text(total.toFixed(2))
 }
