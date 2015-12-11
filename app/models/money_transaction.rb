@@ -15,8 +15,7 @@ class MoneyTransaction < ActiveRecord::Base
 
   default_scope { order('transaction_date desc') }
 
-  scope :for_month, -> (date = nil) {
-    date ||= Date.today
+  scope :for_month, -> (date = Date.today) {
     where(transaction_date: date.beginning_of_month..date.end_of_month)
   }
 
