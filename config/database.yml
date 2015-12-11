@@ -33,10 +33,9 @@ test:
 
 production:
   adapter: mysql2
-  encoding: utf8
-  reconnect: false
   database: finance_production
   pool: 5
-  username: root
-  password: 1
-  host: localhost
+  timeout: 5000
+  username: app
+  password: apppw
+
