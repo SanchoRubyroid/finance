@@ -55,5 +55,5 @@ var updateTotals = function(amount, selected) {
         if(!isNaN(value)) total += value
     })
 
-    $('#grand-total-selected span').text(total.toFixed(2))
+    $('#total-selected span').text(total.toFixed(2))
 }

@@ -4,9 +4,9 @@
       h6.valign.center
         | Grand Total:&nbsp;
         = content_tag(:span, MoneyTransaction.total)
-    #grand-total-selected.col.s3.valign-wrapper.height_100p
+    #total-selected.col.s3.valign-wrapper.height_100p
       h6.valign.center
-        | Grand Total Selected:&nbsp;
+        | Total Selected:&nbsp;
         = content_tag(:span, MoneyTransaction.total(@dates_range))
     .col.s6.right-align
       button.btn-large[type='submit'] Apply changes

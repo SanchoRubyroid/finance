@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get :sign_out, to: 'devise/sessions#destroy'
   end
 
-  get '/:month', to: 'finance#index', as: 'finances'
+  get '/month/:month', to: 'finance#index', as: 'finances'
   post '/', to: 'finance#index', as: 'update_finances'
 
   namespace :admin do
