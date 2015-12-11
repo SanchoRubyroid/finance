@@ -15,7 +15,8 @@ module TransactionsImport
     end
 
     def validate_row(row)
-      !(row['Description'][/AUTOMATIC WITHDRAWAL PAYPAL/] ||
+      !(row['Description'][/AUTOMATIC WITHDRAWAL.*PAYPAL/] ||
+        row['Description'][/CO-OP NETWORK ATM/] ||
         row['Description'][/ONLINE BANKING FUNDS TRANSFER/])
     end
   end

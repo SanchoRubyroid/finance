@@ -12,7 +12,7 @@ module TransactionsImport
     end
 
     def validate_row(row)
-      row[' Status'] == 'Completed'
+      row[' Status'] == 'Completed' && !(row[' Name'][/Wargaming/])
     end
 
     def flip_required?

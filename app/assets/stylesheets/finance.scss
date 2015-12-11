@@ -4,8 +4,9 @@ $footer-gap: 54px;
   margin-bottom: $footer-gap - 1;
 
   & input {
-    height: auto!important;
-    margin: 0!important;
+    height: auto !important;
+    margin: 0 !important;
+    width: 40px !important;
   }
 }
 

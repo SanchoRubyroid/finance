@@ -16,5 +16,5 @@ table.bordered.striped.centered
         = content_tag(:td, money_transaction.amount_spent, class: 'transaction-spent')
         = content_tag(:td) do
           = content_tag(:div, class: 'spent-input-container', style: "display: #{money_transaction.amount_spent_olya.present? ? 'block' : 'none'}") do
-            = text_field_tag("money_transactions[#{money_transaction.id}]", money_transaction.amount_spent_olya, size:4, onclick:'event.stopPropagation()')
+            = text_field_tag("money_transactions[#{money_transaction.id}]", money_transaction.amount_spent_olya, onclick:'event.stopPropagation()')
         = content_tag(:td, money_transaction.currency)
