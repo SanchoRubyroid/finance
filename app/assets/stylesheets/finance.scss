@@ -1,0 +1,31 @@
+$footer-gap: 60px;
+
+.transactions-tab {
+  margin-bottom: $footer-gap - 1;
+}
+
+.transactions-tab tr.line {
+  cursor: pointer;
+
+  &.selected {
+    background-color: #ffb74d !important;
+  }
+
+  &.db-selected.selected {
+    background-color: #dce775 !important;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+#totals-footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:$footer-gap;
+  width:100%;
+  background:#999;
+  opacity: 0.8;
+}

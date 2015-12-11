@@ -1,11 +1,11 @@
 .row
   ul.tabs
-    li.tab.col.s6
-      a.active[href="#test1"] Bank Account
-    li.tab.col.s6
-      a[href="#test2"] PayPal
+    - @transactions.each_with_index do |transaction_hash, index|
+      = content_tag(:li, class: "tab col s#{12/@transactions.size}") do
+        = link_to(transaction_hash[:month_year_caption], "#transactions_tab#{index}", class: ('active' if @transactions.size-1 == index) )
 
-#test1.col.s12
-  = render 'transactions'
-#test2.col.s12
-  = render 'transactions'
+- @transactions.each_with_index do |transaction_hash, index|
+  = content_tag(:div, id: "transactions_tab#{index}", class: "transactions-tab col s#{12/@transactions.size}") do
+    = render partial: 'transactions', locals: {transactions: transaction_hash[:transactions]}
+
+= render 'totals'

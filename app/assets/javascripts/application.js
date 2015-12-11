@@ -23,4 +23,10 @@ $(document).ready(function () {
         contents = $('#flash_' + the_flash).val()
         if (contents.length > 0) Materialize.toast(contents, 3000)
     })
+
+    $('.transactions-tab tr').click(handleTransactionLine)
 })
+
+var handleTransactionLine = function(){
+    $(this).toggleClass('selected')
+}

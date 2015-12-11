@@ -1,19 +1,18 @@
-table
+table.bordered.striped.centered
   thead
-    tr
-      th[data-field="id"] Name
-      th[data-field="name"] Item Name
-      th[data-field="price"] Item Price
+    tr.header
+      th[data-field="date"] Date
+      th[data-field="name"] Name
+      th[data-field="type"] Type
+      th[data-field="amount_spent"] Amount Spent
+      th[data-field="amount_spent_olya"] Olya
+      th[data-field="currency"] Currency
   tbody
-    tr
-      td Alvin
-      td Eclair
-      td $0.87
-    tr
-      td Alan
-      td Jellybean
-      td $3.76
-    tr
-      td Jonathan
-      td Lollipop
-      td $7.00
+    - transactions.each do |money_transaction|
+      = content_tag(:tr, class: "line #{'db-selected selected' if money_transaction.amount_spent_olya.present?}") do
+        = content_tag(:td, money_transaction.transaction_date.strftime('%m/%d/%Y'))
+        = content_tag(:td, money_transaction.name, style: 'text-align:left')
+        = content_tag(:td, money_transaction.system_type.humanize)
+        = content_tag(:td, money_transaction.amount_spent)
+        = content_tag(:td, money_transaction.amount_spent_olya)
+        = content_tag(:td, money_transaction.currency)
