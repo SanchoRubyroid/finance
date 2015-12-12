@@ -43,6 +43,7 @@ var transactionLineHandler = function(){
 
 var transactionsBeforeSubmitHandler = function() {
     $('.transactions-tab input').not('.updated').not(':visible').prop('disabled', true);
+    $('#active_tab').val($('.tabs a.active').attr('number'))
 
     return true;
 }
