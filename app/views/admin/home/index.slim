@@ -1,3 +1,23 @@
 .container
-  h1
-    | Admin Home
+  h4
+    | Quick stats for&nbsp;
+    = content_tag :span, Date.today.year
+
+  .row
+    .col.s12
+      table.bordered.striped
+        tr
+          th Month
+          th Amount
+        - Date::MONTHNAMES.compact.each_with_index do |month, index|
+          tr
+            td
+              = month
+            td
+              = MoneyTransaction.total(Date.new(Date.today.year, index+1, 1))
+        tr
+          td
+            b Total:
+          td
+            b
+              = MoneyTransaction.total(Date.today.beginning_of_year..Date.today.end_of_year)

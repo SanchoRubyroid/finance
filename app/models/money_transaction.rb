@@ -21,7 +21,7 @@ class MoneyTransaction < ActiveRecord::Base
 
   scope :total, -> (date_or_range = nil) {
     relation = self
-    relation = relation.where(transaction_date: date_or_range.beginning_of_month..date_or_range.beginning_of_month) if date_or_range.is_a?(Date)
+    relation = relation.where(transaction_date: date_or_range.beginning_of_month..date_or_range.end_of_month) if date_or_range.is_a?(Date)
     relation = relation.where(transaction_date: date_or_range) if date_or_range.is_a?(Range)
     relation.sum(:amount_spent_olya)
   }
