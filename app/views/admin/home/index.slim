@@ -18,11 +18,13 @@
               th Month
               th Amount
             - Date::MONTHNAMES.compact.each_with_index do |month, index|
+              - this_month = Date.new(year, index+1, 1)
+              - break if this_month > Date.today
               tr
                 td
                   = month
                 td
-                  = MoneyTransaction.total(Date.new(year, index+1, 1))
+                  = MoneyTransaction.total(this_month)
             tr
               td
                 b Total:
