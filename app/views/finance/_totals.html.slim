@@ -7,6 +7,6 @@
     #total-selected.col.s3.valign-wrapper.height_100p
       h6.valign.center
         | Total Selected:&nbsp;
-        = content_tag(:span, MoneyTransaction.total(@dates_range))
+        = content_tag(:span, MoneyTransaction.total(Date.today))
     .col.s6.right-align
       button.btn-large[type='submit'] Apply changes
