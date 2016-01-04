@@ -1,23 +1,31 @@
 .container
   h4
-    | Quick stats for&nbsp;
-    = content_tag :span, Date.today.year
+    | Quick stats for:
 
   .row
-    .col.s12
-      table.bordered.striped
-        tr
-          th Month
-          th Amount
-        - Date::MONTHNAMES.compact.each_with_index do |month, index|
-          tr
-            td
-              = month
-            td
-              = MoneyTransaction.total(Date.new(Date.today.year, index+1, 1))
-        tr
-          td
-            b Total:
-          td
-            b
-              = MoneyTransaction.total(Date.today.beginning_of_year..Date.today.end_of_year)
+    ul.tabs
+      - years.each_with_index do |year, index|
+        = content_tag(:li, class: "tab col s#{12/years.size}") do
+          = link_to(year, "#years_tab#{index}", class: ('active' if years.size-1 == index))
+
+  - years.each_with_index do |year, index|
+    - this_year = Date.new(year, 1, 1)
+    = content_tag(:div, id: "years_tab#{index}", class: "year-tab col s#{12/years.size}") do
+      .row
+        .col.s12
+          table.bordered.striped
+            tr
+              th Month
+              th Amount
+            - Date::MONTHNAMES.compact.each_with_index do |month, index|
+              tr
+                td
+                  = month
+                td
+                  = MoneyTransaction.total(Date.new(year, index+1, 1))
+            tr
+              td
+                b Total:
+              td
+                b
+                  = MoneyTransaction.total(this_year.beginning_of_year..this_year.end_of_year)
