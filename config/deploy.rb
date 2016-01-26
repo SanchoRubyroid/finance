@@ -42,6 +42,15 @@ set :deploy_to, '/var/rails/finance'
 # set :keep_releases, 5
 
 namespace :deploy do
+  task :custom_symlink do
+    on roles(:app) do
+      info "Creating secure symlinks"
+      %w{ database secrets }.each do |yaml_name|
+        execute "rm #{fetch(:release_path)}/config/#{yaml_name}.yml"
+        execute "ln -nfs #{fetch(:deploy_to)}/secure/#{yaml_name}.yml #{fetch(:release_path)}/config/#{yaml_name}.yml"
+      end
+    end
+  end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -52,4 +61,6 @@ namespace :deploy do
     end
   end
 
+  after :finishing, 'deploy:cleanup'
+  after 'symlink:shared', 'deploy:custom_symlink'
 end

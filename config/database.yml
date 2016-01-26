@@ -36,6 +36,6 @@ production:
   database: finance_production
   pool: 5
   timeout: 5000
-  username: app
-  password: apppw
+  username: unknown
+  password: unknown
 
