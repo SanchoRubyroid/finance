@@ -6,8 +6,6 @@ set :repo_url, 'git@github.com:SanchoRubyroid/finance.git'
 set :repository_cache, 'git_cache'
 set :deploy_via, :remote_cache
 
-set :rvm_ruby_version, '2.2.4'
-
 set :passenger_restart_with_touch, true
 set :passenger_rvm_ruby_version, fetch(:rvm_ruby_version)
 
