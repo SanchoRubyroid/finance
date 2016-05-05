@@ -1,3 +1,6 @@
+<a href="https://codeclimate.com/github/SanchoRubyroid/finance"><img src="https://codeclimate.com/github/SanchoRubyroid/finance/badges/gpa.svg" /></a>
+<a href="https://codeclimate.com/github/SanchoRubyroid/finance"><img src="https://codeclimate.com/github/SanchoRubyroid/finance/badges/issue_count.svg" /></a>
+
 Finance
 ================
 
@@ -21,7 +24,7 @@ Ruby on Rails
 
 This application requires:
 
-- Ruby 2.2.1
+- Ruby 2.2.4
 - Rails 4.2.5
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).

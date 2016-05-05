@@ -60,9 +60,5 @@ module TransactionsImport
         @rejected_transactions
       end
     end
-
-    def validate_row(row)
-      true
-    end
   end
 end
